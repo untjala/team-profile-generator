@@ -12,9 +12,13 @@ describe ('employee', () => {
         expect(employee.email).toEqual(expect.any(String));;
         //Assert
     });
+    //Test to pull employee name 
+    it ('should pull the employee name from the object', () => {
+        const checkedName = "Jane";
+        const employee = new Employee (checkedName);
+        expect(employee.getName()).toBe(checkedName);
+    });
 });
 });
-//Test to pull employee name 
-it ("should ")
 //Test to pull emplyee id
 //Test to pull employee role
