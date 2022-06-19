@@ -1,3 +1,4 @@
+//Creates the employee class
 class Employee {
     constructor(name, id, email) {
         this.name = name;
@@ -5,6 +6,7 @@ class Employee {
         this.email = email;
         this.role = 'Employee';
     };
+    //Methods to get the name, id, and email of the employee
     getName() {
         return this.name;
     };
@@ -18,4 +20,5 @@ class Employee {
         return this.role;
     };
 }
+//Exports the file to be used in the other js files
 module.exports = Employee;

@@ -8,6 +8,7 @@ class Intern extends Employee {
         this.school = school;
         this.role = 'Intern';
     }
+    //Method to get the intern's school and role
     getSchool() {
         return this.school;
     }

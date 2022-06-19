@@ -1,8 +1,8 @@
 const Employee = require('../utils/employee');
 
-//Grabs info from the employee class and adds intern
+//Grabs info from the employee class and adds manager to it
 class Manager extends Employee {
-    //Adds the intern's school
+    //Adds the managers's office number
     constructor(name, id, email, officeNumber) {
         super(name, id, email);
         this.officeNumber = officeNumber;

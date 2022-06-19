@@ -1,14 +1,14 @@
 const Engineer = require('../utils/engineer');
-
+//Arrange
 describe('Engineer', () => {
     describe('Initialization', () => {
+        //Act 
+        //Sets the github username
         it('set the github username for the engineer', () => {
-            //Arrange
             const checkGithub = 'whatsmyrepoagain';
             const engineer = new Engineer('Jane', 1234, 'janethehacker@nothackers.net', checkGithub);
-            //Act 
-            expect(engineer.github).toBe(checkGithub);
             //Assert
+            expect(engineer.github).toBe(checkGithub);
         });
         //Test to pull engineer github 
         it('should pull the github username', () => {
@@ -16,6 +16,7 @@ describe('Engineer', () => {
             const engineer = new Engineer('Jane', 1234, 'janethehacker@nothackers.net', checkGithub);
             expect(engineer.getGit()).toBe(checkGithub);
         });
+        //Returns the role as engineer
         it('should return the role as engineer', () => {
             const checkedRole = 'Engineer';
             const engineer = new Engineer('Jane', 1234, 'janethehacker@nothackers.net');
