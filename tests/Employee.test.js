@@ -18,7 +18,17 @@ describe ('employee', () => {
         const employee = new Employee (checkedName);
         expect(employee.getName()).toBe(checkedName);
     });
+    //Test to pull emplyee id
+    it ('should pull the employee id from the object', () => {
+        const checkedId = "1234";
+        const employee = new Employee (checkedId);
+        expect(employee.getId()).toBe(checkedId);
+    });
+    //Test to pull employee role
+    it('should return the role as employee', () => {
+        const checkedRole = "Employee";
+        const employee = new Employee ("Jane", 1234, "janethehacker@nothackers.net");
+        expect(employee.getRole()).toBe(checkedRole);
+    })
 });
 });
-//Test to pull emplyee id
-//Test to pull employee role
