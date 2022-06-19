@@ -1,4 +1,4 @@
-const Intern = require('../utils/employee');
+const Employee = require('../utils/employee');
 
 //Grabs info from the employee class and adds intern
 class Intern extends Employee {

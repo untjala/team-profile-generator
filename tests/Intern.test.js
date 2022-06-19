@@ -18,7 +18,7 @@ describe('Intern', () => {
         });
         it('should return the role as intern', () => {
             const checkedRole = 'Intern';
-            const intern = new intern('Jane', 1234, 'janethehacker@nothackers.net');
+            const intern = new Intern ('Jane', 1234, 'janethehacker@nothackers.net');
             expect(intern.getRole()).toBe(checkedRole);
         });
     });
