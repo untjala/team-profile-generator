@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 function generatePage(html) {
     fs.writeFile('./output/template.html', html, error => {
         if(error){
@@ -9,7 +8,7 @@ function generatePage(html) {
         process.exit();
     })
 }
-//Generates employee cards based on user entry
+//Template for employee cards
 const createHtml = (data) => {
     const manager = managerInput => {
         return ` <section class="d-flex card border-light col-12 input-card" style="max-width: 18rem;"> 
@@ -50,4 +49,50 @@ const createHtml = (data) => {
             </div>
           </section>`
     }
+    //For loop to generate employee cards based on prompt data
+    const makeCards = teamMembers => {
+        let teamMembersHtml = ""
+        for (i = 0; i < teamMembers.length; i++) {
+            if(teamMembers[i].getRole() === 'Manager') {
+                teamMembersHtml += manager(teamMembers[i])
+            }
+            if(teamMembers[i].getRole() === 'Engineer') {
+                teamMembersHtml += engineer (teamMembers[i])
+            }
+            if(teamMembers[i].getRole() === 'Intern') {
+                teamMembersHtml += intern (teamMembers[i])
+        }
+    }
+    return teamMembersHtml
 }
+//HTML Template
+const template = data => {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+      <link rel="stylesheet" href="./style.css">
+      <title>Team Profile Generator</title>
+    </head>
+    
+    <body>
+      <header class="container col-12 input-header">
+        <div class="d-flex justify-center team-head">
+          <h1>My Team</h1>
+        </div>
+      </header>
+      <main class="container d-flex input-container">
+    ${makeCards(data)}
+    </main>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"></script>
+    </html>`
+}
+generatePage(template(data));
+}
+module.exports = createHtml;
