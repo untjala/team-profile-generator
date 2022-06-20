@@ -58,7 +58,7 @@ function questionData() {
             choices: ['Manager', 'Engineer', 'Intern']
         },
     ])
-    //After all employee prompts are done, the user will be prompted for the manager office number if they select manager as role
+        //After all employee prompts are done, the user will be prompted for the manager office number if they select manager as role
         .then(answers => {
             if (answers.employeeRole === 'Manager') {
                 inquirer.prompt([
@@ -75,10 +75,11 @@ function questionData() {
                         }
                     },
                 ])
-                //Adds the manager office number to manager info, pushes manager into the team member array
+                    //Adds the manager office number to manager info, pushes manager into the team member array
                     .then(response => {
                         const manager = new Manager(answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.officeNumber)
                         teamMembers.push(manager);
+                        addTeamMember()
                     })
                 //If the user selects engineer, they are given the engineer prompts directely after the employee prompts
             } else if (answers.employeeRole === 'Engineer') {
@@ -96,12 +97,13 @@ function questionData() {
                         }
                     }
                 ])
-                //Adds engineer info to the engineer class, pushes engineer into the team array
+                    //Adds engineer info to the engineer class, pushes engineer into the team array
                     .then(response => {
                         const engineer = new Engineer(answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.engineerGit)
                         teamMembers.push(engineer);
+                        addTeamMember()
                     })
-                    //If the user selects intern, they are prompted to enter the interns school
+                //If the user selects intern, they are prompted to enter the interns school
             } else if (answers.employeeRole === 'Intern') {
                 inquirer.prompt([
                     {
@@ -117,36 +119,37 @@ function questionData() {
                         }
                     }
                 ])
-                //Adds the intern to the array
+                    //Adds the intern to the array
                     .then(response => {
                         const intern = new Intern(answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.internSchool)
                         teamMembers.push(intern);
+                        addTeamMember()
                     })
             }
             else {
                 const setTeam = new Employee(answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole)
                 teamMembers.push(setTeam);
+                addTeamMember()
             }
             //Function to give the user an option to add another team member 
             function addTeamMember() {
-                inquirer.prompt ([
+                inquirer.prompt([
                     {
                         type: 'confirm',
                         name: 'addEmployee',
                         message: 'Would you like to add additonal employee\'s?'
                     }
                 ])
-                .then(res =>{
-                    if(res.addTeamMember === true){
-                        userInfo(teamMembers);
-                    }else{
-                        console.log('team', teamMembers)
-                        let cardLayoutHtml = generateTemplate(teamMembers);
-                        generateHtml(cardLayoutHtml)
+                .then(response => {
+                    if(response.addTeamMember === true) {
+                        questionData(teamMembers);
+                    } else {
+                        let teamCards = templateGen(teamMembers);
+                        pageGen(teamCards)
+                    }
+                })
             }
         })
-    }
-    })
 }
 //Calls the prompt function
-questionData();
+questionData(); 
