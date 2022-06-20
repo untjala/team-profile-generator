@@ -19,7 +19,9 @@ function userAnswers() {
             name: 'employeeName',
             validate: function (nameInfo) {
                 if (nameInfo) {
+                    //If there is an input, the prompts will continue
                     return true;
+                    //Otherwise, the user will get the alert that they have to enter an name
                 } else {
                     return 'Name cannot be blank'
                 }
@@ -62,13 +64,38 @@ function userAnswers() {
                     {
                         type: 'input',
                         message: 'What is your team manager\'s office number?',
-                        name: 'officeNumber'
+                        name: 'officeNumber',
+                        validate: function (officeNumber) {
+                            if (officeNumber) {
+                                return true;
+                            } else {
+                                return 'Office number cannot be blank'
+                            }
+                        } 
                     },
         ])
         .then(response => {
-            const teamManager = new Manager (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.officeNumber)
-            teamMembers.push(teamManager);
-            addOption()
+            const manager = new Manager (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.officeNumber)
+            teamMembers.push(manager);
+        })
+    } else if (answers.employeeRole === 'Engineer') {
+        inquirer.prompt ([
+            {
+                type: 'input',
+                name: 'engineerGit',
+                message: 'What is the engineer\'s GitHub username?',
+                validate: function (engineerGit) {
+                    if (engineerGit) {
+                        return true;
+                    } else {
+                        return 'Username cannot be blank'
+                    }
+                } 
+            }
+        ])
+        .then(response => {
+            const engineer = new Engineer (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.engineerGit)
+            teamMembers.push(engineer);
         })
     }
 })
