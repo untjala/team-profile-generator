@@ -8,6 +8,12 @@ const Intern = require('./utils/intern');
 const Manager = require('./utils/manager');
 
 const teamMembers = [];
+//function to start prompts and store user responses
+function userAnswers() {
+    inquirer.prompt ([
+        //Prompts for employee info
+    ])
+}
 //Holds questions for adding a team manager
 const managerQuestions = [
         {
