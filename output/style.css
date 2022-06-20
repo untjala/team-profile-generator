@@ -1,0 +1,22 @@
+body {
+    background-color: #fefefa;
+}
+.input-container {
+    justify-content: center;
+    align-items: center;
+}
+.input-header {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color:#d8e4bc;
+    color:#4f7942;
+}
+.input-card {
+    margin: 36px;
+    box-shadow: 4px 4px;
+    color:#d8e4bc;
+}
+.card-header {
+    background-color: #4f7942;
+}
