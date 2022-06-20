@@ -1,6 +1,6 @@
 const fs = require('fs');
-function generatePage(html) {
-    fs.writeFile('./output/template.html', html, error => {
+function writeToFile(html) {
+    fs.writeFile('./output/template.html', html, function (error) {
         if(error){
         return console.log('Page could not be generated. Please try again')
         }
@@ -9,7 +9,7 @@ function generatePage(html) {
     })
 }
 //Template for employee cards
-const createHtml = (data) => {
+const pageGen = (data) => {
     const manager = managerInput => {
         return ` <section class="d-flex card border-light col-12 input-card" style="max-width: 18rem;"> 
         <div class="card-header">${managerInput.getName()} </div>
@@ -57,13 +57,13 @@ const createHtml = (data) => {
                 teamMembersHtml += manager(teamMembers[i])
             }
             if(teamMembers[i].getRole() === 'Engineer') {
-                teamMembersHtml += engineer (teamMembers[i])
+                teamMembersHtml += engineer(teamMembers[i])
             }
             if(teamMembers[i].getRole() === 'Intern') {
-                teamMembersHtml += intern (teamMembers[i])
+                teamMembersHtml += intern(teamMembers[i])
         }
     }
-    return teamMembersHtml
+    return teamMembersHtml;
 }
 //HTML Template
 const template = data => {
@@ -93,6 +93,6 @@ const template = data => {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"></script>
     </html>`
 }
-generatePage(template(data));
+writeToFile(template(data));
 }
-module.exports = createHtml;
+module.exports = pageGen;
