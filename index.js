@@ -97,8 +97,32 @@ function userAnswers() {
             const engineer = new Engineer (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.engineerGit)
             teamMembers.push(engineer);
         })
+    } else if (answers.employeeRole === 'Intern') {
+        inquirer.prompt ([
+            {
+                type: 'input',
+                name: 'internSchool',
+                message: 'What is the intern\'s school?',
+                validate: function (internSchool) {
+                    if (internSchool) {
+                        return true;
+                    } else {
+                        return 'School cannot be blank'
+                    }
+                } 
+            }
+        ])
+        .then(response => {
+            const intern = new Intern (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.internSchool)
+            teamMembers.push(intern);
+        })
+    }
+    else {
+        const setTeam = new Employee (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole)
+        teamMembers.push(setTeam);
     }
 })
 }
+
 //Calls the prompt function
 userAnswers(); 
