@@ -50,68 +50,28 @@ function userAnswers() {
     } 
 },
 {
-    type: 'checkbox',
+    type: 'list',
     message: 'What is the employee\s role?',
     name: 'employeeRole',
     choices: ['Manager', 'Engineer', 'Intern']
 },
     ])
-
-//Holds questions for adding a team manager
-// const managerQuestions = [
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s name?',
-//         name: 'managerName'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s employee ID?',
-//         name: 'managerID'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s e-mail address?',
-//         name: 'managerEmail'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s office number?',
-//         name: 'managerNumber'
-//     },
-//     {
-//         type: 'checkbox',
-//         message: 'Would you like to add an engineer, an intern, or finish setup?',
-//         name: 'addMore',
-//         choices: ['Add engineer', 'Add intern', 'All done',]
-//     }
-// ]
-// const engineerQuestions = [
-//     {
-//         type: 'input',
-//         message: 'What is your team engineer\'s name?',
-//         name: 'engineerName'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team engineer\'s employee ID?',
-//         name: 'engineerID'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s e-mail address?',
-//         name: 'engineerrEmail'
-//     },
-//     {
-//         type: 'input',
-//         message: 'What is your team manager\'s office number?',
-//         name: 'engineerNumber'
-//     },
-// ]
-// inquirer.prompt(managerQuestions).then((answers) => {
-//     console.log('Great! Add your engineer:')
-//     output.template(answers)
-// });
+.then(answers => {
+    if (answers.employeeRole === 'Manager') {
+        inquirer.prompt ([
+                    {
+                        type: 'input',
+                        message: 'What is your team manager\'s office number?',
+                        name: 'officeNumber'
+                    },
+        ])
+        .then(response => {
+            const teamManager = new Manager (answers.employeeName, answers.employeeEmail, answers.employeeID, answers.employeeRole, response.officeNumber)
+            teamMembers.push(teamManager);
+            addOption()
+        })
+    }
+})
 }
 //Calls the prompt function
 userAnswers(); 
