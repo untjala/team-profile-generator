@@ -32,38 +32,35 @@ const managerQuestions = [
         },
         {
             type: 'checkbox',
-            message: 'Would you like to add an engineer or an intern?',
+            message: 'Would you like to add an engineer, an intern, or finish setup?',
             name: 'addMore',
             choices: ['Add engineer', 'Add intern', 'All done',]
         }
+    ]
+    const engineerQuestions = [
+        {
+            type: 'input',
+            message: 'What is your team engineer\'s name?',
+            name: 'engineerName'
+        },
+        {
+            type: 'input',
+            message: 'What is your team engineer\'s employee ID?',
+            name: 'engineerID'
+        },
+        {
+            type: 'input',
+            message: 'What is your team manager\'s e-mail address?',
+            name: 'engineerrEmail'
+        },
+        {
+            type: 'input',
+            message: 'What is your team manager\'s office number?',
+            name: 'engineerNumber'
+        },
     ]
 inquirer.prompt(managerQuestions).then((answers)=> {
     console.log('Great! Add your engineer:')
     output.template(answers)
 });
 
-const engineerQuestions = [
-    {
-        type: 'input',
-        message: 'What is your team engineer\'s name?',
-        name: 'engineerName'
-    },
-    {
-        type: 'input',
-        message: 'What is your team engineer\'s employee ID?',
-        name: 'engineerID'
-    },
-    {
-        type: 'input',
-        message: 'What is your team manager\'s e-mail address?',
-        name: 'engineerrEmail'
-    },
-    {
-        type: 'input',
-        message: 'What is your team manager\'s office number?',
-        name: 'engineerNumber'
-    },
-]
-inquirer.prompt(engineerQuestions).then((answers)=> {
-output.template(answers)
-});
