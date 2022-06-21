@@ -10,8 +10,8 @@ const enterInfo = () => { managerPrompts() };
 const managerPrompts = () => {
     inquirer
         .prompt(managerPromptsArray)
-        .then((data) => {
-            const manager = new Manager(data.name, data.email, data.id, data.officeNumber)
+        .then((answer) => {
+            const manager = new Manager(answer.name, answer.email, answer.id, answer.officeNumber)
             teamMembers.push(manager);
             addTeamMember();
         })
@@ -25,18 +25,18 @@ const addTeamMember = () => {
             message: 'Would you like to add additonal employees?',
             choices: ['Manager', 'Engineer', 'Intern', 'All done'],
         })
-        .then(data => {
-            if (data.addTeamMember === 'Manager') {return managerPrompts(); }
-            if (data.addTeamMember === 'Engineer') {return engineerPrompts(); }
-            if (data.addTeamMember === 'Intern') {return internPrompts(); }
-            if (data.addTeamMember === 'All Done') {return pageGen(teamMembers); }
+        .then(answer => {
+            if (answer.addTeamMember === 'Manager') {return managerPrompts(); }
+            if (answer.addTeamMember === 'Engineer') {return engineerPrompts(); }
+            if (answer.addTeamMember === 'Intern') {return internPrompts(); }
+            if (answer.addTeamMember === 'All Done') {return pageGen(teamMembers); }
         })
 };
 const engineerPrompts = () => {
     inquirer
         .prompt(engineerPromptsArray)
-        .then((data) => {
-            const engineer = new Engineer(data.name, data.email, data.id, data.github)
+        .then((answer) => {
+            const engineer = new Engineer(answer.name, answer.email, answer.id, answer.github)
             teamMembers.push(engineer);
             addTeamMember();
         })
@@ -45,8 +45,8 @@ const engineerPrompts = () => {
 const internPrompts = () => {
     inquirer
         .prompt(internPromptsArray)
-        .then((data) => {
-            const intern = new Intern (data.name, data.email, data.id, data.school)
+        .then((answer) => {
+            const intern = new Intern (answer.name, answer.email, answer.id, answer.school)
             teamMembers.push(intern);
             addTeamMember();
         })

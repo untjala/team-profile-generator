@@ -1,6 +1,6 @@
 const fs = require('fs');
 function writeToFile(html) {
-    fs.writeFile('./output/template.html', html, function (error) {
+    fs.writeFile('./output/index.html', html, function (error) {
         if(error){
         return console.log('Page could not be generated. Please try again')
         }
@@ -9,7 +9,7 @@ function writeToFile(html) {
     })
 }
 //Template for employee cards
-const pageGen = (data) => {
+const pageGen = (answer) => {
     const manager = managerInput => {
         return ` <section class="d-flex card border-light col-12 input-card" style="max-width: 18rem;"> 
         <div class="card-header">${managerInput.getName()} </div>
@@ -66,7 +66,7 @@ const pageGen = (data) => {
     return teamMembersHtml;
 }
 //HTML Template
-const template = data => {
+const template = answer => {
     return `<!DOCTYPE html>
     <html lang="en">
     
@@ -87,12 +87,12 @@ const template = data => {
         </div>
       </header>
       <main class="container d-flex input-container">
-    ${makeCards(data)}
+    ${makeCards(answer)}
     </main>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"></script>
     </html>`
 }
-writeToFile(template(data));
+writeToFile(template(answer));
 }
 module.exports = pageGen;
