@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 
-const {generatePage} = require('./utils/createHtml.js');
+const { generatePage } = require('./utils/createHtml.js');
 const Employee = require('./utils/employee');
 const { Engineer, engineerPromptsArray } = require('./utils/engineer');
 const { Intern, internPromptsArray } = require('./utils/intern');
@@ -46,13 +46,10 @@ const addTeamMember = () => {
             choices: ['Manager', 'Engineer', 'Intern', 'All done'],
         })
         .then(answer => {
-            console.log(answer.addTeamMember)
             if (answer.addTeamMember === 'Manager') { return managerPrompts(); }
             if (answer.addTeamMember === 'Engineer') { return engineerPrompts(); }
             if (answer.addTeamMember === 'Intern') { return internPrompts(); }
-            if (answer.addTeamMember === 'All done') { 
-                console.log('test statement')
-                    return generatePage(teamMembers); }
+            if (answer.addTeamMember === 'All done') {return generatePage(teamMembers);}
         })
 };
 //Calls the prompt function

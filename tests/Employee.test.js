@@ -22,7 +22,7 @@ describe('employee', () => {
         //Test to pull emplyee id
         it('should pull the employee id from the object', () => {
             const checkedId = '1234';
-            const employee = new Employee(checkedId);
+            const employee = new Employee('Jane', checkedId);
             expect(employee.getId()).toBe(checkedId);
         });
         //Test to pull employee role

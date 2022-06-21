@@ -1,6 +1,3 @@
-body {
-    background-color: #fefefa;
-}
 .input-container {
     justify-content: center;
     align-items: center;
@@ -15,6 +12,7 @@ body {
 .input-card {
     margin: 36px;
     box-shadow: 4px 4px;
+    background-color: #F3F2ED;
     color:#d8e4bc;
 }
 .card-header {

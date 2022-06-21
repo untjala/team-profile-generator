@@ -4,40 +4,40 @@ const fs = require('fs');
 const generatePage = (answer) => {
   const manager = managerAnswer => {
     console.log('Generating page...')
-    return ` <section class="d-flex card border-light col-12 Answer-card" style="max-width: 18rem;"> 
-    <div class="card-header">${managerAnswer.getName()} </div>
+    return ` <section class="d-flex card border-light col-12 input-card p-0" style="max-width: 18rem;"> 
+    <div class="card-header">${managerAnswer.getRole()} </div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${managerAnswer.getRole()}</h5>
+    <h5 class="card-title">${managerAnswer.getName()}</h5>
     <ul> 
-    <li>${managerAnswer.getId()}</li>
-    <li>${managerAnswer.getEmail()}</li>
-    <li>${managerAnswer.getOfficeNumber()}</li>
+    <li>Employee ID: ${managerAnswer.getId()}</li>
+    <li>Email: ${managerAnswer.getEmail()}</li>
+    <li>Office Number: ${managerAnswer.getOfficeNumber()}</li>
     </ul>
     </div>
     </section>`
   }
   const engineer = engineerAnswer => {
-    return ` <section class="d-flex card border-light col-12 Answer-card" style="max-width: 18rem;"> 
-    <div class="card-header">${engineerAnswer.getName()} </div>
+    return ` <section class="d-flex card border-light col-12 input-card p-0" style="max-width: 18rem;"> 
+    <div class="card-header">${engineerAnswer.getRole()} </div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${engineerAnswer.getRole()}</h5>
+    <h5 class="card-title">${engineerAnswer.getName()}</h5>
     <ul> 
-    <li>${engineerAnswer.getId()}</li>
-    <li>${engineerAnswer.getEmail()}</li>
-    <li>${engineerAnswer.getGit()}</li>
+    <li>Employee ID: ${engineerAnswer.getId()}</li>
+    <li>Email: ${engineerAnswer.getEmail()}</li>
+    <li>GitHub: ${engineerAnswer.getGit()}</li>
     </ul>
     </div>
     </section>`
   }
   const intern = internAnswer => {
-    return ` <section class="d-flex card border-light col-12 Answer-card" style="max-width: 18rem;"> 
-    <div class="card-header">${internAnswer.getName()} </div>
+    return ` <section class="d-flex card border-light col-12 input-card p-0" style="max-width: 18rem;"> 
+    <div class="card-header">${internAnswer.getRole()} </div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${internAnswer.getRole()}</h5>
+    <h5 class="card-title">${internAnswer.getName()}</h5>
     <ul> 
-    <li>${internAnswer.getId()}</li>
-    <li>${internAnswer.getEmail()}</li>
-    <li>${internAnswer.getSchool()}</li>
+    <li>Employee ID: ${internAnswer.getId()}</li>
+    <li>Email: ${internAnswer.getEmail()}</li>
+    <li>School: ${internAnswer.getSchool()}</li>
     </ul>
     </div>
     </section>`
@@ -46,13 +46,13 @@ const generatePage = (answer) => {
   const makeCards = teamMembers => {
     let teamMembersHtml = ' '
     for (i = 0; i < teamMembers.length; i++) {
-      if(teamMembers[i].getRole() === 'Manager') {
+      if (teamMembers[i].getRole() === 'Manager') {
         teamMembersHtml += manager(teamMembers[i])
       }
-      if(teamMembers[i].getRole() === 'Engineer') {
+      if (teamMembers[i].getRole() === 'Engineer') {
         teamMembersHtml += engineer(teamMembers[i])
       }
-      if(teamMembers[i].getRole() === 'Intern') {
+      if (teamMembers[i].getRole() === 'Intern') {
         teamMembersHtml += intern(teamMembers[i])
       }
     }
@@ -69,17 +69,17 @@ const generatePage = (answer) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+
     <title>Team Profile Generator</title>
     </head>
     
     <body>
-    <header class="container col-12 Answer-header">
+    <header class="container col-12 input-header">
     <div class="d-flex justify-center team-head">
-    <h1>My Team</h1>
+    <h1>Our Team!</h1>
     </div>
     </header>
-    <main class="container d-flex Answer-container">
+    <main class="container d-flex input-container">
     ${makeCards(answer)}
     </main>
     </body>
@@ -87,13 +87,13 @@ const generatePage = (answer) => {
     </html>`
   }
   function writeHtml(html) {
-      fs.writeFile('./output/index.html', html, function (error) {
-          if(error){
-          return console.log('Page could not be generated. Please try again')
-          }
-          console.log('Page created! Nice work!')
-      })
+    fs.writeFile('./output/index.html', html, function (error) {
+      if (error) {
+        return console.log('Page could not be generated. Please try again')
+      }
+      console.log('Page created! Nice work!')
+    })
   }
   writeHtml(template(answer));
 }
-module.exports = {generatePage};
+module.exports = { generatePage };
