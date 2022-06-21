@@ -7,7 +7,7 @@ const { Intern, internPromptsArray } = require('./utils/intern');
 const { Manager, managerPromptsArray } = require('./utils/manager');
 const teamMembers = [];
 
-const enterInfo = () => {managerPrompts()};
+const enterInfo = () => { managerPrompts() };
 const managerPrompts = () => {
     inquirer
         .prompt(managerPromptsArray)
@@ -16,7 +16,26 @@ const managerPrompts = () => {
             teamMembers.push(manager);
             addTeamMember();
         })
-};
+}
+
+const engineerPrompts = () => {
+    inquirer
+        .prompt(engineerPromptsArray)
+        .then((answer) => {
+            const engineer = new Engineer(answer.name, answer.email, answer.id, answer.github)
+            teamMembers.push(engineer);
+            addTeamMember();
+        })
+}
+const internPrompts = () => {
+    inquirer
+        .prompt(internPromptsArray)
+        .then((answer) => {
+            const intern = new Intern(answer.name, answer.email, answer.id, answer.school)
+            teamMembers.push(intern);
+            addTeamMember();
+        })
+}
 //Function to give the user an option to add another team member 
 const addTeamMember = () => {
     inquirer.prompt(
@@ -27,30 +46,13 @@ const addTeamMember = () => {
             choices: ['Manager', 'Engineer', 'Intern', 'All done'],
         })
         .then(answer => {
-            if (answer.addTeamMember === 'Manager') {return managerPrompts(); }
-            if (answer.addTeamMember === 'Engineer') {return engineerPrompts(); }
-            if (answer.addTeamMember === 'Intern') {return internPrompts(); }
-            if (answer.addTeamMember === 'All Done') {return generatePage(teamMembers); }
-        })
-};
-const engineerPrompts = () => {
-    inquirer
-        .prompt(engineerPromptsArray)
-        .then((answer) => {
-            const engineer = new Engineer(answer.name, answer.email, answer.id, answer.github)
-            teamMembers.push(engineer);
-            addTeamMember();
-        })
-};
-
-const internPrompts = () => {
-    inquirer
-        .prompt(internPromptsArray)
-        .then((answer) => {
-            const intern = new Intern (answer.name, answer.email, answer.id, answer.school)
-            teamMembers.push(intern);
-            addTeamMember();
-            console.log([teamMembers])
+            console.log(answer.addTeamMember)
+            if (answer.addTeamMember === 'Manager') { return managerPrompts(); }
+            if (answer.addTeamMember === 'Engineer') { return engineerPrompts(); }
+            if (answer.addTeamMember === 'Intern') { return internPrompts(); }
+            if (answer.addTeamMember === 'All done') { 
+                console.log('test statement')
+                    return generatePage(teamMembers); }
         })
 };
 //Calls the prompt function

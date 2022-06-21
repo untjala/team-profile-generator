@@ -56,7 +56,7 @@ const generatePage = (answer) => {
         teamMembersHtml += intern(teamMembers[i])
       }
     }
-    return teamMembersHtml;
+    return teamMembersHtml
   }
   //HTML Template
   const template = answer => {
