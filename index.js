@@ -1,12 +1,13 @@
 const inquirer = require('inquirer');
-const pageGen = require('./utils/pageGen.js')
-const Employee = require('./utils/employee')
+
+const {generatePage} = require('./utils/createHtml.js');
+const Employee = require('./utils/employee');
 const { Engineer, engineerPromptsArray } = require('./utils/engineer');
 const { Intern, internPromptsArray } = require('./utils/intern');
 const { Manager, managerPromptsArray } = require('./utils/manager');
-const teamMembers = []
+const teamMembers = [];
 
-const enterInfo = () => { managerPrompts() };
+const enterInfo = () => {managerPrompts()};
 const managerPrompts = () => {
     inquirer
         .prompt(managerPromptsArray)
@@ -29,7 +30,7 @@ const addTeamMember = () => {
             if (answer.addTeamMember === 'Manager') {return managerPrompts(); }
             if (answer.addTeamMember === 'Engineer') {return engineerPrompts(); }
             if (answer.addTeamMember === 'Intern') {return internPrompts(); }
-            if (answer.addTeamMember === 'All Done') {return pageGen(teamMembers); }
+            if (answer.addTeamMember === 'All Done') {return generatePage(teamMembers); }
         })
 };
 const engineerPrompts = () => {
@@ -49,6 +50,7 @@ const internPrompts = () => {
             const intern = new Intern (answer.name, answer.email, answer.id, answer.school)
             teamMembers.push(intern);
             addTeamMember();
+            console.log([teamMembers])
         })
 };
 //Calls the prompt function
