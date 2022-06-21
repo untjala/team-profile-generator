@@ -1,6 +1,6 @@
-const Engineer = require('../utils/engineer');
+const {Engineer} = require('../utils/engineer');
 
-describe('Engineer', () => {
+describe('engineer', () => {
     describe('Initialization', () => {
         it('set the github username for the engineer', () => {
             //Arrange

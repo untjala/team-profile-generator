@@ -1,6 +1,6 @@
-const Intern = require('../utils/intern');
+const {Intern} = require('../utils/intern');
 
-describe('Intern', () => {
+describe('intern', () => {
     describe('Initialization', () => {
         //Set's the intern's school
         it('set the school for the intern', () => {

@@ -1,6 +1,6 @@
-const Manager = require('../utils/manager');
+const {Manager} = require('../utils/manager');
 //Arrange
-describe('Manager', () => {
+describe('manager', () => {
     describe('Initialization', () => {
         //Sets the office number for the manager
         //Act 
